@@ -2,15 +2,22 @@ package miagem1;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.Assert.*;
 
-public class QuestionAChoixExclusifTest {
-    private QuestionAChoixExclusif q;
+public class QuestionAChoixMultipleTest {
+
+    private QuestionAChoixMultiple q;
 
     @Before
-    public void setUp() throws Exception{
-        //Given : Une instantce de question à choix exclusif
-        this.q = new QuestionAChoixExclusif("Who is Joe ?", 2);
+    public void setUp() throws Exception {
+        ArrayList<Integer> choix = new ArrayList<Integer>();
+        choix.add(3);
+        choix.add(2);
+        this.q = new QuestionAChoixMultiple("Who is Joe ?", choix);
     }
 
     @Test
@@ -26,14 +33,14 @@ public class QuestionAChoixExclusifTest {
         // When : on demande le score pour un indice
         float resScore = q.getScoreForIndice(2);
         // then : Le socre retourné est 100 donc l'indice de la bonne réponse est bien celui fourni à la construction
-        assertEquals("L'indice ne correspond pas !", 100, resScore, 0.0);
+        assertEquals("L'indice ne correspond pas !", 100/2.0, resScore, 0.0);
     }
 
     @Test
-    public void testGetScoreForIndiceMauvaiseReponse(){
+    public void testGetScoreForIndiceMauvaiseReponse() {
         // When : on demande le score pour un indice
         float resScore = q.getScoreForIndice(1);
-        // then : Le socre retourné est 0 donc l'indice de la réponse n'est pas celui fourni à la construction
-        assertEquals("L'indice ne devrait pas correspondre", 0, resScore, 0.0);
+        // then : Le socre retourné est 0 donc l'indice de la réponse n'est pas l'un de ceux fournis à la construction
+        assertEquals("L'indice ne correspond pas !", 0, resScore, 0.0);
     }
 }
