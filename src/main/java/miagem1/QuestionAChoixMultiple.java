@@ -38,6 +38,6 @@ public class QuestionAChoixMultiple implements QuestionAChoix {
         if (indicesBonnesReponses.contains(indiceChoix)) {
             return 100f/((float)(indicesBonnesReponses.size()));
         }
-        return 0;
+        return -50f;
     }
 }

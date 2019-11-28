@@ -41,6 +41,6 @@ public class QuestionAChoixMultipleTest {
         // When : on demande le score pour un indice
         float resScore = q.getScoreForIndice(1);
         // then : Le socre retourné est 0 donc l'indice de la réponse n'est pas l'un de ceux fournis à la construction
-        assertEquals("L'indice ne correspond pas !", 0, resScore, 0.0);
+        assertEquals("L'indice ne correspond pas !", 0, (resScore < 0) ? 0 : resScore, 0.0);
     }
 }

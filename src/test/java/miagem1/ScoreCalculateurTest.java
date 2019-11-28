@@ -3,6 +3,7 @@ package miagem1;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -44,5 +45,21 @@ public class ScoreCalculateurTest {
         float scoreAttendu = 0;
         float scoreTest = this.s.calculeScore(choixMultiple, qm);
         assertEquals("Le score n'est pas correct", scoreAttendu, scoreTest, 0.0);
+    }
+
+    @Test
+    public void testCalculeScoreQuestionChoixMultipleMauvaiseReponseEnTrop(){
+        this.choixMultiple = new ArrayList<>(Arrays.asList(1,2,3,4,5));
+        float scoreAttendu = 0;
+        float scoreTest = this.s.calculeScore(choixMultiple, qm);
+        assertEquals("Le score n'est pas correct", scoreAttendu, scoreTest, 0.01);
+    }
+
+    @Test
+    public void testCalculeScoreQuestionChoixMultipleBonneEtMauvaiseReponse(){
+        this.choixMultiple = new ArrayList<>(Arrays.asList(1, 2, 3));
+        double scoreAttendu = 16.66;
+        float scoreTest = this.s.calculeScore(choixMultiple, qm);
+        assertEquals("Le score n'est pas correct", scoreAttendu, scoreTest, 0.01);
     }
 }
